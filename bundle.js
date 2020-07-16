@@ -103,13 +103,13 @@ var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
 var receiveTodos = function receiveTodos(todos) {
   return {
-    type: "RECEIVE_TODOS",
+    type: RECEIVE_TODOS,
     todos: todos
   };
 };
 var receiveTodo = function receiveTodo(todo) {
   return {
-    type: "RECEIVE_TODO",
+    type: RECEIVE_TODO,
     todo: todo
   };
 };
@@ -148,24 +148,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/todo_actions */ "./frontend/actions/todo_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
-var initialState = {
-  1: {
-    id: 1,
-    title: "wash car",
-    body: "wax after wash",
-    done: false
-  },
-  2: {
-    id: 2,
-    title: "buy groceries",
-    body: "fruits and veggies",
-    done: true
-  }
-};
+ // const initialState = {
+//     1: {
+//         id: 1,
+//         title: "wash car",
+//         body: "wax after wash",
+//         done: false
+//     },
+//     2: {
+//         id: 2,
+//         title: "buy groceries",
+//         body: "fruits and veggies",
+//         done: true
+//     }
+// };
 
 var todosReducer = function todosReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var nextState = {};
@@ -208,6 +207,9 @@ __webpack_require__.r(__webpack_exports__);
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState);
+  store.subscribe(function () {
+    localStorage.state = JSON.stringify(store.getState());
+  });
   return store;
 };
 
@@ -234,8 +236,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Root() {
-  // const store = configureStore();
-  // window.store = store
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  window.store = store;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Todos!");
 }
 
