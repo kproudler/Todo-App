@@ -115,8 +115,23 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var initialState = {
+  1: {
+    id: 1,
+    title: "wash car",
+    body: "wax after wash",
+    done: false
+  },
+  2: {
+    id: 2,
+    title: "buy groceries",
+    body: "fruits and veggies",
+    done: true
+  }
+};
+
 var todosReducer = function todosReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
